@@ -72,7 +72,7 @@ public class Gmail extends Email {
         //It is guaranteed that start date <= end date
         int count = 0;
         for(Date date : messageDateDb.values()){
-            if((date.after(start) || date.equals(start)) && (date.before(end) || date.equals(end))){
+            if((date.after(start)) && (date.before(end))){
                 count++;
             }
         }
