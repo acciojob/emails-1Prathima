@@ -26,9 +26,9 @@ public class Gmail extends Email {
         // 2. The mails are received in non-decreasing order. This means that the date of a new mail is greater than equal to the dates of mails received already.
 
         if(inboxDb.size()>=inboxCapacity){
-            String oldestMail = inboxDb.get(inboxDb.size()-1);
+            String oldestMail = inboxDb.get(0);
             trashDb.add(oldestMail);
-            inboxDb.remove(inboxDb.size()-1);
+            inboxDb.remove(0);
         }
         inboxDb.add(message);
         messageSenderDb.put(message, sender);
@@ -47,8 +47,6 @@ public class Gmail extends Email {
                 return;
             }
         }
-        messageSenderDb.remove(message);
-        messageDateDb.remove(message);
     }
 
     public String findLatestMessage(){
