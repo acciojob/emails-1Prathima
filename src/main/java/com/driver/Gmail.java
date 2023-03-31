@@ -42,6 +42,8 @@ public class Gmail extends Email {
             if(inboxDb.get(i).equals(message)){
                 trashDb.add(message);
                 inboxDb.remove(i);
+                messageSenderDb.remove(message);
+                messageDateDb.remove(message);
                 return;
             }
         }
@@ -72,7 +74,7 @@ public class Gmail extends Email {
         //It is guaranteed that start date <= end date
         int count = 0;
         for(Date date : messageDateDb.values()){
-            if((date.after(start)) && (date.before(end))){
+            if((date.after(start) || date.equals(start)) && (date.before(end) || date.equals(end))){
                 count++;
             }
         }
